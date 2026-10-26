@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cartinhas pra você</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#fde6e4; --ink:#4a0d17; --muted:#8a3a45; --env:#fff6ec; --env2:#f3d3c6; --seal:#c8102e; --paper:#fffdf8; --line:#ead9c8;
+  --ui:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#2a0a10; --ink:#ffeceb; --muted:#e9a9ad; --env:#f8e6d8; --env2:#e8c4b4; --seal:#e5253d; --paper:#fffdf8; --line:#ead9c8;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#2a0a10; --ink:#ffeceb; --muted:#e9a9ad; --env:#f8e6d8; --env2:#e8c4b4; --seal:#e5253d; --paper:#fffdf8; --line:#ead9c8;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);line-height:1.5;min-height:100%}
+main{max-width:760px;margin:0 auto;padding:44px 20px 80px}
+h1{font-size:clamp(2.3rem,9vw,4rem);line-height:1;margin:0 0 14px;font-weight:800;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:1.08rem;max-width:44ch;margin:0}
+.note{margin-top:18px;font-size:.98rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 18px;margin-top:40px}
+@media (max-width:480px){.grid{grid-template-columns:1fr}}
+.env{position:relative;display:block;width:100%;aspect-ratio:3/2;border:0;padding:0;background:var(--env);border-radius:8px;cursor:pointer;color:#3a2347;font:inherit;box-shadow:0 6px 0 var(--env2);transition:transform .2s;transform:rotate(var(--r,0deg))}
+.env:hover{transform:rotate(0deg) translateY(-4px)}
+.env::before{content:"";position:absolute;inset:0;border-radius:8px;background:linear-gradient(to bottom right,transparent 49.5%,var(--env2) 50%) left/50% 100% no-repeat,linear-gradient(to bottom left,transparent 49.5%,var(--env2) 50%) right/50% 100% no-repeat;opacity:.55;clip-path:polygon(0 100%,50% 45%,100% 100%)}
+.env::after{content:"";position:absolute;left:0;right:0;top:0;height:62%;background:var(--env2);clip-path:polygon(0 0,100% 0,50% 100%);border-radius:8px 8px 0 0;transform-origin:top;transition:transform .35s}
+.env:hover::after{transform:rotateX(180deg)}
+.seal{position:absolute;left:50%;top:48%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:var(--seal);color:#fff;display:grid;place-items:center;font-size:1.1rem;z-index:2;box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.lab{position:absolute;left:12px;right:12px;bottom:9px;z-index:2;font-weight:700;font-size:.98rem;line-height:1.2;text-align:center}
+.env.read .seal{background:var(--env2);color:#3a2347;box-shadow:none}
+:focus-visible{outline:3px solid var(--seal);outline-offset:3px}
+dialog{border:0;padding:0;background:transparent;max-width:min(640px,calc(100% - 24px));width:100%;max-height:92vh;overflow:visible;color:#3a2347}
+dialog::backdrop{background:rgba(20,10,30,.72)}
+.paper{background:var(--paper);background-image:repeating-linear-gradient(transparent 0 35px,var(--line) 35px 36px);border-radius:6px;padding:30px 26px 26px;max-height:88vh;overflow:auto;box-shadow:0 20px 50px rgba(0,0,0,.4);animation:rise .45s ease-out}
+@keyframes rise{from{transform:translateY(60px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+.paper h2{font-family:var(--ui);font-size:1rem;margin:0 0 14px;font-weight:700;color:#8a6b7a}
+.paper p{font-family:var(--hand);font-size:1.6rem;line-height:36px;margin:0 0 36px;font-weight:500}
+.paper .sign{margin:0;font-weight:700;text-align:right}
+.close{display:block;margin:16px auto 0;background:var(--paper);color:#3a2347;border:0;border-radius:99px;padding:11px 26px;font:inherit;font-weight:800;cursor:pointer}
+.foot{margin-top:56px;text-align:center;color:var(--muted);font-size:.95rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+[hidden]{display:none!important}
+.intro{max-width:560px;margin:0 auto;min-height:82vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
+.intro .big{font-size:4.6rem;line-height:1;animation:float 3.2s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+.intro h1{margin-top:18px}
+.intro p{color:var(--muted);font-size:1.12rem;margin:0 0 14px;max-width:38ch}
+.go,.back{font:inherit;font-weight:800;cursor:pointer;border:0;border-radius:99px;padding:14px 32px;background:var(--seal);color:#fff;margin-top:14px}
+.back{background:transparent;color:var(--muted);border:2px solid var(--muted);padding:9px 22px;margin-top:0;font-weight:700}
+@media (prefers-reduced-motion:reduce){.intro .big{animation:none}}
+.env,dialog,.close,.env.read .seal{color:#4a0d17}
+.paper h2{color:#a0525c}
+.go{box-shadow:0 5px 0 rgba(0,0,0,.25)}
+.intro p{font-size:1.18rem;line-height:1.6}
+.intro .closing{font-family:var(--hand);font-size:2.2rem;line-height:1.15;font-weight:700;color:var(--seal);margin:18px 0 6px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .intro .closing{color:#ff8a94}}
+:root[data-theme="dark"] .intro .closing{color:#ff8a94}
+@media (min-width:481px){.env.wide{grid-column:1/-1;aspect-ratio:3/1;margin-top:10px}}
+.env.wide .lab{font-size:1.1rem}
+</style>
+</head>
+<body>
+<section class="intro" id="intro">
+  <div class="big" aria-hidden="true">💌</div>
+  <h1>Oii, minha princesa ❤️</h1>
+  <p>Eu tentei achar as palavras certas pra te dizer o que eu sinto, e nunca saía do jeito que eu queria. Então escrevi, com calma e muito carinho, cada cartinha pensando em você.</p>
+  <p class="closing">E não importa o momento que a gente esteja vivendo, eu sempre estarei aqui ao seu lado ❤️</p>
+  <button class="go" id="go" type="button">Ver as cartinhas</button>
+</section>
+
+<main id="cartas" hidden>
+  <h1>Cartinhas pra você, princesa</h1>
+  <p class="sub">Não precisa responder nada. Abra uma quando quiser, na hora que fizer sentido pra você.</p>
+  <p class="note">Cada envelope tem um jeito de eu estar perto, mesmo quando você precisa de espaço.</p>
+  <div class="grid" id="grid"></div>
+  <p class="foot">Feito com carinho, pra você. 💛</p>
+  <p class="foot" style="margin-top:18px"><button class="back" id="back" type="button">Voltar ao início</button></p>
+</main>
+
+<dialog id="dlg" aria-labelledby="dt">
+  <div class="paper" id="paper"></div>
+  <button class="close" id="close" type="button">Fechar carta</button>
+</dialog>
+
+<script>
+var LETTERS = [
+  {t:"Abra quando estiver pesado", e:"❤️‍🩹", r:-2, p:[
+    "Eii minha princesa, eu entendo tudo que você tá passando e sei que não tá sendo fácil enfrentar esse momento. Só quero que você não esqueça que não tá sozinha, tá? Você sabe que pode contar comigo pra tudo, independente do que aconteça.",
+    "Tô aqui pra te ouvir, te apoiar e te ajudar no que eu puder. Você não precisa passar por tudo isso sozinha. Eu tô aqui por você e vou continuar aqui sempre que precisar. Te amo muito ❤️‍🩹"
+  ]},
+  {t:"Abra quando quiser desabafar", e:"🫂", r:2, p:[
+    "E não precisa ficar guardando tudo pra vc. Se quiser desabafar, chorar ou só ficar quietinha, eu vou estar aqui do mesmo jeito. Não precisa fingir que tá tudo bem cmg, quero que vc se sinta à vontade pra ser vc mesma.",
+    "Queria poder tirar um pouquinho desse peso de vc e te dar um abraço bem apertado pra vc sentir que tudo vai ficar bem. Te amo demais, meu amor, e quero estar do seu lado nos momentos bons e principalmente nos difíceis ❤️‍🩹❤️"
+  ]},
+  {t:"Abra quando precisar de espaço", e:"🕊️", r:1, p:[
+    "Minha princesa, eu quero começar te dizendo que eu entendo. De verdade. Você pediu um tempo e eu não tô aqui pra brigar com isso, nem pra te apressar. Se você precisa de espaço pra respirar, pra pensar, pra se escutar, então esse espaço é seu.",
+    "Eu confesso que não é fácil pra mim, meu coração fica apertado. Mas eu aprendi que amar também é saber esperar sem cobrar. Você não me deve resposta, nem explicação, nem pressa.",
+    "Enquanto isso, eu vou cuidar de mim, pra ser alguém melhor pra você e pra nós, seja qual for o caminho. E tem uma coisa que não muda com o tempo nem com a distância: eu gosto de você, do seu jeito, da sua história, de quem você é.",
+    "Quando você estiver pronta, eu vou estar aqui. Sem cobrança, com o coração aberto. Cuida bem de você, meu amor."
+  ]},
+  {t:"Abra quando bater a saudade", e:"💌", r:-1, p:[
+    "Se você abriu essa cartinha, talvez a saudade tenha apertado aí também. Então já fica aqui um segredo: do meu lado ela aperta todo dia.",
+    "Sinto falta da sua voz, do seu jeito de rir, dos seus detalhes que só eu reparava. Sinto falta das coisas pequenas, como dividir um silêncio com você e sentir que tava tudo certo.",
+    "Você não precisa fazer nada com essa saudade, não tem pressa nenhuma. Ela só é a prova de que o que a gente construiu foi de verdade, e que teve muito carinho no meio.",
+    "Mas se você se sentir à vontade, eu sempre vou estar à sua disposição. Pode me mandar mensagem, me ligar, ou até vir aqui em casa pra gente ficar juntinho. Você sempre vai ser muito bem-vinda.",
+    "Fecha os olhos um segundinho e imagina um abraço meu, bem apertado, daqueles de ficar. Tá mandado. Te amo, princesa. ❤️"
+  ]},
+  {t:"Abra quando não conseguir dormir", e:"🌙", r:2, p:[
+    "Se você tá acordada agora, com a cabeça cheia, vem cá, respira fundo comigo. Puxa o ar bem devagar... e solta. Mais uma vez.",
+    "Eu sei que tem muita coisa pesando no seu coração. Mas hoje, nessa noite, você não precisa resolver nada. Nenhum problema cabe inteiro na madrugada.",
+    "Você já atravessou dias difíceis e continuou de pé. Isso é força de verdade, e eu admiro muito você por isso. Agora é hora de descansar e se cuidar, com carinho, como você merece.",
+    "Eu queria poder te cobrir, apagar a luz e ficar do seu lado até o sono chegar. Mesmo de longe, tô torcendo pra você dormir em paz.",
+    "Boa noite, minha princesa, dorme com Deus. Até amanhã, bons sonhos e bom descanso. Se cuida, te amo muitooo 🌙"
+  ]},
+  {t:"Abra quando duvidar da gente", e:"🧡", r:-2, p:[
+    "Eu sei que você tá com dúvidas, e eu não vou te julgar por isso. Quando o coração tá cansado, é normal questionar tudo. Eu também tive meus medos.",
+    "A distância machuca. A família dividida machuca ainda mais. Eu não vou fingir que é fácil, nem prometer que vai ser rápido.",
+    "Mas eu sei o que a gente tem. Sei do carinho, do cuidado, de tudo que a gente já viveu junto. E acredito que, quando duas pessoas se amam de verdade e querem o mesmo caminho, elas encontram um jeito, no ritmo delas.",
+    "Eu quero cuidar de nós, mas só se for com você, e só quando você se sentir pronta. Seja qual for a sua resposta, eu vou respeitar. E vou continuar te amando com todo o carinho e respeito do mundo."
+  ]},
+  {t:"Abra quando quiser sorrir", e:"😄", r:-1, p:[
+    "Respira fundo e sorri, princesa, porque essa carta foi feita só pra te arrancar um sorriso. 😄",
+    "Lembra quando você começou a me mandar mais mensagens? Eu juro que de 2 em 2 minutos eu olhava o celular pra ver se já tinha uma mensagem sua kkkk. Não conseguia me controlar.",
+    "E a nossa guerrinha de bolinha? Foi bom demais! Só esses pequenos momentos, bobos e leves, foram mudando tudo sem eu perceber.",
+    "E o dia em que você me cumprimentou e eu estranhei um pouquinho, porque você parecia completamente diferente por mensagem? kkkk Logo depois a gente já tava conversando e brincando tanto que eu nem vi a hora passar.",
+    "De todos os elogios que eu poderia te fazer, o meu favorito é o seu sorriso. Ele é lindo e acelera meu coração de um jeito que eu nem sei explicar. Então sorri aí, pra mim e pra você. 😄"
+  ]},
+  {t:"Abra quando estiver feliz", e:"🥰", r:2, p:[
+    "Se você tá feliz agora, que bom! Eu queria estar do seu lado nesse momento, porque ver você feliz é uma das coisas que mais mexem comigo.",
+    "Só de te ver dando aquele sorriso lindo, meu coração já acelera de um jeito que eu nem sei explicar kkk.",
+    "Eu quero estar com você nos momentos difíceis, mas também nos bons: nas risadas, nas conquistas, nos dias simples e nos momentos bobos. Quero comemorar tudo com você.",
+    "Você mudou minha vida pra melhor, e cada dia ao seu lado eu sou mais feliz. Aproveita esse momento, princesa, você merece. Te amo. ❤️"
+  ]},
+  {t:"O dia em que tudo mudou", e:"💫", r:0, w:1, p:[
+    "Tudo mudou quando você começou a conversar mais comigo e a me mandar mais mensagens. Sem perceber, eu me sentia tão bem conversando com você, mais solto, podendo ser eu mesmo. Dia após dia, com esse seu jeitinho, você foi me conquistando, e cada conversa foi ficando mais especial.",
+    "Aquela sexta-feira parecia só mais um dia normal. Eu nem tava com vontade de ir pra escola, mas mudei de opinião só porque você ia. Eu queria tanto a sua companhia, brincar de novo, conversar mais.",
+    "Quando vi você chegando, bateu até um desespero de não saber o que fazer. Eu não sabia como a gente ia ficar, e confesso que estranhei um pouquinho o seu cumprimento, porque você parecia completamente diferente por mensagem. Mas a gente conversou e brincou tanto dentro da sala que eu nem vi a hora passar.",
+    "No final, perto da hora de ir embora, começou uma confusão na minha cabeça kkkk. Será que ela me quer? Será que tô indo rápido demais? Será que tô confundindo as coisas? Mas foi ali que eu tomei a minha decisão: vi todo mundo saindo da sala e esperei você.",
+    "Quando a gente saiu de mãos dadas, meu coração acelerou. Lá fora, eu nunca imaginei que ia acontecer: você me deu um abraço e, na mesma hora, fiquei tão feliz e pensei: é agora. E te dei um selinho.",
+    "No caminho de volta pra casa eu não tirava o sorriso do rosto. Quando cheguei e vi a sua mensagem, fiquei mais feliz ainda. Ali eu decidi: era você, e só você, pro resto da vida. Naquela noite eu dormi tão bem, até com o sorriso no rosto kkkk.",
+    "Você mudou a minha vida pra melhor. E cada dia eu sou mais feliz ao seu lado."
+  ]},
+  {t:"Abra por último", e:"🌹", r:0, w:1, p:[
+    "Se você chegou até aqui, quero te contar uma coisa com o coração na mão: depois daquele dia em que você pediu um tempo, eu não soube lidar muito bem. Passei mal, não dormi direito, passei noites chorando.",
+    "Foi no meio disso tudo que eu decidi criar essas cartinhas. Cada uma foi escrita com lágrimas e com o coração apertado, mas também com todo o carinho que eu tenho. Me esforcei ao máximo pra tentar fazer algo bonito pra você.",
+    "O meu medo de te perder foi imenso, meu mundo parecia que tinha acabado. Mas eu não te conto isso pra cobrar nada, nem pra te fazer sentir culpa. Eu conto porque você merece saber o quanto é importante pra mim, e porque prefiro ser sincero com você a esconder o que eu sinto.",
+    "E confesso mais uma coisa: às vezes eu volto nessas cartinhas, fico um tempinho lendo e acabo chorando um pouquinho também kkk. Mas é choro de quem ama, e eu não me arrependo de nenhuma lágrima.",
+    "Nesses dias eu aprendi o quanto eu valorizo você, e que eu quero ser alguém que cuida, que escuta e que espera com respeito. Seja qual for o caminho que a gente siga, eu levo isso comigo."
+  ]}
+];
+
+var grid = document.getElementById("grid"), dlg = document.getElementById("dlg"),
+    paper = document.getElementById("paper");
+
+LETTERS.forEach(function(L, n){
+  var b = document.createElement("button");
+  b.type = "button"; b.className = "env";
+  b.style.setProperty("--r", L.r + "deg");
+  if (L.w) b.classList.add("wide");
+  b.setAttribute("aria-label", "Abrir carta: " + L.t);
+  var s = document.createElement("span"); s.className = "seal"; s.textContent = L.e;
+  var l = document.createElement("span"); l.className = "lab"; l.textContent = L.t;
+  b.appendChild(s); b.appendChild(l);
+  b.addEventListener("click", function(){ openLetter(n, b); });
+  grid.appendChild(b);
+});
+
+function openLetter(n, btn){
+  var L = LETTERS[n];
+  paper.innerHTML = "";
+  var h = document.createElement("h2"); h.id = "dt"; h.textContent = L.t; paper.appendChild(h);
+  L.p.forEach(function(t){
+    var p = document.createElement("p"); p.textContent = t; paper.appendChild(p);
+  });
+  var sg = document.createElement("p"); sg.className = "sign"; sg.textContent = "Com amor, Victor"; paper.appendChild(sg);
+  paper.scrollTop = 0;
+  btn.classList.add("read");
+  dlg.showModal();
+}
+document.getElementById("close").addEventListener("click", function(){ dlg.close(); });
+var intro = document.getElementById("intro"), cartas = document.getElementById("cartas");
+document.getElementById("go").addEventListener("click", function(){ intro.hidden = true; cartas.hidden = false; window.scrollTo(0, 0); });
+document.getElementById("back").addEventListener("click", function(){ cartas.hidden = true; intro.hidden = false; window.scrollTo(0, 0); });
+dlg.addEventListener("click", function(e){ if (e.target === dlg) dlg.close(); });
+</script>
+</body>
+</html>
